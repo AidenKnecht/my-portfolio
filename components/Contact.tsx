@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const containerVariants = {
   hidden: {},
@@ -21,18 +21,13 @@ const fadeUp = {
 const socials = [
   {
     label: "GitHub",
-    href: "https://github.com/",
+    href: "https://github.com/aidenknecht",
     icon: Github,
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/in/",
+    href: "https://linkedin.com/in/aiden-knecht",
     icon: Linkedin,
-  },
-  {
-    label: "Twitter",
-    href: "https://twitter.com/",
-    icon: Twitter,
   },
 ];
 
@@ -70,11 +65,11 @@ export default function Contact() {
           {/* Email CTA */}
           <motion.a
             variants={fadeUp}
-            href="mailto:hello@example.com"
+            href="mailto:knechtaj@mail.uc.edu"
             className="inline-flex items-center gap-2 rounded-xl bg-gray-900 dark:bg-white px-6 py-3 text-sm font-medium text-white dark:text-gray-900 shadow-sm hover:bg-gray-700 dark:hover:bg-gray-100 transition-colors"
           >
             <Mail className="w-4 h-4" />
-            hello@example.com
+            knechtaj@mail.uc.edu
           </motion.a>
 
           {/* Social links */}

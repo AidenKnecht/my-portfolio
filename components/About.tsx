@@ -66,7 +66,7 @@ export default function About() {
           >
             <div className="w-44 h-44 rounded-full bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
               <span className="text-4xl font-bold text-white select-none">
-                YN
+                AK
               </span>
             </div>
             {/* Decorative dashed ring */}
@@ -79,13 +79,14 @@ export default function About() {
             className="space-y-4 text-gray-600 dark:text-gray-300"
           >
             <p className="text-lg leading-relaxed">
-              I&apos;m a full-stack developer with a passion for building clean,
-              performant web experiences. I love working across the stack —
-              from crafting accessible UIs to designing scalable APIs.
+              CompTIA Security+ certified Cybersecurity student with a 4.0 GPA
+              at the University of Cincinnati, pursuing a Bachelor of Science in
+              Cybersecurity (Anticipated Graduation: Summer 2028).
             </p>
             <p className="text-lg leading-relaxed">
-              When I&apos;m not coding, I explore new design tools, contribute
-              to open source, and dig into systems architecture.
+              Currently gaining hands-on enterprise experience through an IT
+              Security and Infrastructure Co-op, bringing a disciplined,
+              athletic work ethic to every challenge.
             </p>
           </motion.div>
         </motion.div>

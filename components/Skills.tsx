@@ -5,20 +5,15 @@ import { motion, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const skills = [
-  { label: "TypeScript", color: "bg-blue-500/10 text-blue-700 dark:text-blue-400" },
-  { label: "JavaScript", color: "bg-yellow-400/10 text-yellow-700 dark:text-yellow-400" },
-  { label: "React", color: "bg-cyan-500/10 text-cyan-700 dark:text-cyan-400" },
-  { label: "Next.js", color: "bg-gray-500/10 text-gray-700 dark:text-gray-300" },
-  { label: "Node.js", color: "bg-green-500/10 text-green-700 dark:text-green-400" },
-  { label: "Tailwind CSS", color: "bg-teal-500/10 text-teal-700 dark:text-teal-400" },
-  { label: "Framer Motion", color: "bg-pink-500/10 text-pink-700 dark:text-pink-400" },
-  { label: "PostgreSQL", color: "bg-indigo-500/10 text-indigo-700 dark:text-indigo-400" },
-  { label: "Prisma", color: "bg-purple-500/10 text-purple-700 dark:text-purple-400" },
-  { label: "GraphQL", color: "bg-rose-500/10 text-rose-700 dark:text-rose-400" },
-  { label: "Docker", color: "bg-sky-500/10 text-sky-700 dark:text-sky-400" },
-  { label: "Git", color: "bg-orange-500/10 text-orange-700 dark:text-orange-400" },
-  { label: "REST APIs", color: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400" },
-  { label: "Figma", color: "bg-violet-500/10 text-violet-700 dark:text-violet-400" },
+  { label: "SIEM", color: "bg-blue-500/10 text-blue-700 dark:text-blue-400" },
+  { label: "Microsoft Defender XDR", color: "bg-sky-500/10 text-sky-700 dark:text-sky-400" },
+  { label: "Kusto Query Language (KQL)", color: "bg-purple-500/10 text-purple-700 dark:text-purple-400" },
+  { label: "SQL Query Scripting", color: "bg-orange-500/10 text-orange-700 dark:text-orange-400" },
+  { label: "Windows Server Administration", color: "bg-indigo-500/10 text-indigo-700 dark:text-indigo-400" },
+  { label: "Linux/Unix", color: "bg-amber-500/10 text-amber-700 dark:text-amber-400" },
+  { label: "TCP/IP", color: "bg-green-500/10 text-green-700 dark:text-green-400" },
+  { label: "Network Security Protocols", color: "bg-teal-500/10 text-teal-700 dark:text-teal-400" },
+  { label: "CompTIA Security+", color: "bg-rose-500/10 text-rose-700 dark:text-rose-400" },
 ];
 
 const tagContainerVariants = {

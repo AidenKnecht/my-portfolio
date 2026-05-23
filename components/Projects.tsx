@@ -9,34 +9,28 @@ interface Project {
   title: string;
   description: string;
   tech: string[];
-  github: string;
-  live: string;
+  github?: string;
+  live?: string;
 }
 
 const projects: Project[] = [
   {
-    title: "Portfolio Site",
+    title: "National Cyber League (NCL)",
     description:
-      "This site — built with Next.js 14, Tailwind CSS, shadcn/ui, and Framer Motion. Statically exported for GitHub Pages.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    github: "https://github.com/",
-    live: "https://",
+      "Competed in a collegiate-level CTF, solving real-world challenges in OSINT, Log Analysis, and Network Traffic Analysis.",
+    tech: ["CTF", "OSINT", "NetworkAnalysis"],
   },
   {
-    title: "Task Flow",
+    title: "Digital Forensic Investigation",
     description:
-      "A collaborative task manager with real-time updates, priority scheduling, and team workspaces backed by PostgreSQL.",
-    tech: ["React", "Node.js", "PostgreSQL", "Prisma", "WebSockets"],
-    github: "https://github.com/",
-    live: "https://",
+      "Conducted a simulated forensic analysis of a compromised system with proper evidence handling and document control.",
+    tech: ["Forensics", "Cybersecurity"],
   },
   {
-    title: "Weather Dashboard",
+    title: "Browser Security Analysis",
     description:
-      "A weather app with hourly forecasts, interactive maps, and location-based alerts powered by the OpenWeather API.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "REST APIs"],
-    github: "https://github.com/",
-    live: "https://",
+      "Performed a comparative analysis of browser security using CVE data to create an evidence-based recommendation report.",
+    tech: ["CVE", "SecurityResearch"],
   },
 ];
 
@@ -110,27 +104,33 @@ export default function Projects() {
                 ))}
               </div>
 
-              {/* Links */}
-              <div className="flex items-center gap-3 pt-1 border-t border-gray-100 dark:border-white/10">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
-                >
-                  <Github className="w-3.5 h-3.5" />
-                  GitHub
-                </a>
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
-                >
-                  <ExternalLink className="w-3.5 h-3.5" />
-                  Live
-                </a>
-              </div>
+              {/* Links — only rendered when URLs are provided */}
+              {(project.github || project.live) && (
+                <div className="flex items-center gap-3 pt-1 border-t border-gray-100 dark:border-white/10">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+                    >
+                      <Github className="w-3.5 h-3.5" />
+                      GitHub
+                    </a>
+                  )}
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      Live
+                    </a>
+                  )}
+                </div>
+              )}
             </motion.div>
           ))}
         </motion.div>

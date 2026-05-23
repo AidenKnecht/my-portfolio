@@ -254,7 +254,7 @@ export default function Hero() {
           >
             Hello, I&apos;m{" "}
             <span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
-              Your Name
+              Aiden Knecht
             </span>
           </motion.h1>
 
@@ -262,8 +262,7 @@ export default function Hero() {
             variants={fadeUp}
             className="text-lg sm:text-xl text-gray-500 dark:text-gray-400 max-w-xl"
           >
-            Full-stack developer &amp; designer crafting thoughtful digital
-            experiences.
+            CompTIA Security+ Certified Cybersecurity Student &amp; IT Security Co-op
           </motion.p>
 
           <motion.div
