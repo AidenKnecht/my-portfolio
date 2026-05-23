@@ -13,6 +13,7 @@ import {
   ShieldAlert,
 } from "lucide-react";
 import TranscriptModal from "@/components/TranscriptModal";
+import ContactModal from "@/components/ContactModal";
 
 // ─── Variants ────────────────────────────────────────────────────────────────
 
@@ -185,6 +186,7 @@ function BentoGrid({ items }: BentoGridProps) {
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const [transcriptOpen, setTranscriptOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   // Track how far the section has scrolled out of view
   const { scrollYProgress } = useScroll({
@@ -290,7 +292,10 @@ export default function Hero() {
             <button className="inline-flex items-center gap-2 rounded-xl bg-gray-900 dark:bg-white px-5 py-2.5 text-sm font-medium text-white dark:text-gray-900 shadow-sm hover:bg-gray-700 dark:hover:bg-gray-100 transition-colors">
               View Work <ArrowRight className="w-4 h-4" />
             </button>
-            <button className="inline-flex items-center gap-2 rounded-xl border border-gray-200 dark:border-white/10 px-5 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">
+            <button
+              onClick={() => setIsContactOpen(true)}
+              className="inline-flex items-center gap-2 rounded-xl border border-gray-200 dark:border-white/10 px-5 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
+            >
               Contact Me <Mail className="w-4 h-4" />
             </button>
           </motion.div>
@@ -306,6 +311,10 @@ export default function Hero() {
       <TranscriptModal
         isOpen={transcriptOpen}
         onClose={() => setTranscriptOpen(false)}
+      />
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
       />
     </section>
   );
