@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 
 const containerVariants = {
   hidden: {},
@@ -59,15 +60,20 @@ export default function About() {
             About
           </motion.h2>
 
-          {/* Profile photo placeholder */}
+          {/* Profile photo */}
           <motion.div
             variants={slideInLeft}
             className="relative justify-self-center md:justify-self-start"
           >
-            <div className="w-44 h-44 rounded-full bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-              <span className="text-4xl font-bold text-white select-none">
-                AK
-              </span>
+            <div className="w-44 h-44 rounded-full overflow-hidden">
+              <Image
+                src="/AtriCure_Headshot.jpeg"
+                alt="Aiden Knecht"
+                width={176}
+                height={176}
+                className="w-full h-full object-cover"
+                priority
+              />
             </div>
             {/* Decorative dashed ring */}
             <div className="absolute -inset-2 rounded-full border-2 border-dashed border-gray-200 dark:border-white/10 pointer-events-none" />
