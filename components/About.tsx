@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import Image from "next/image";
 
 const containerVariants = {
   hidden: {},
@@ -66,13 +65,13 @@ export default function About() {
             className="relative justify-self-center md:justify-self-start"
           >
             <div className="w-44 h-44 rounded-full overflow-hidden">
-              <Image
-                src="/AtriCure_Headshot.jpeg"
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="AtriCure_Headshot.jpeg"
                 alt="Aiden Knecht"
                 width={176}
                 height={176}
                 className="w-full h-full object-cover"
-                priority
               />
             </div>
             {/* Decorative dashed ring */}
