@@ -6,11 +6,10 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
   ArrowRight,
-  CheckCircle,
-  Globe,
   Mail,
-  TrendingUp,
-  Video,
+  Search,
+  Shield,
+  ShieldAlert,
 } from "lucide-react";
 
 // ─── Variants ────────────────────────────────────────────────────────────────
@@ -73,39 +72,34 @@ interface BentoGridProps {
 
 const itemsSample: BentoItem[] = [
   {
-    title: "Analytics Dashboard",
-    meta: "v2.4.1",
+    title: "National Cyber League (NCL)",
+    meta: "CTF",
     description:
-      "Real-time metrics with AI-powered insights and predictive analytics",
-    icon: <TrendingUp className="w-4 h-4 text-blue-500" />,
-    status: "Live",
-    tags: ["Statistics", "Reports", "AI"],
+      "Competed in a collegiate-level CTF, solving real-world challenges in OSINT, Log Analysis, and Network Traffic Analysis.",
+    icon: <Shield className="w-4 h-4 text-blue-500" />,
+    status: "Competed",
+    tags: ["CTF", "OSINT", "NetworkAnalysis"],
     colSpan: 2,
     hasPersistentHover: true,
   },
   {
-    title: "Task Manager",
-    meta: "84 completed",
-    description: "Automated workflow management with priority scheduling",
-    icon: <CheckCircle className="w-4 h-4 text-emerald-500" />,
-    status: "Updated",
-    tags: ["Productivity", "Automation"],
+    title: "Digital Forensic Investigation",
+    meta: "Academic",
+    description:
+      "Conducted a simulated forensic analysis of a compromised system with proper evidence handling and document control.",
+    icon: <Search className="w-4 h-4 text-emerald-500" />,
+    status: "Completed",
+    tags: ["Forensics", "Cybersecurity"],
   },
   {
-    title: "Media Library",
-    meta: "12GB used",
-    description: "Cloud storage with intelligent content processing",
-    icon: <Video className="w-4 h-4 text-purple-500" />,
-    tags: ["Storage", "CDN"],
+    title: "Browser Security Analysis",
+    meta: "Research",
+    description:
+      "Performed a comparative analysis of browser security using CVE data to create an evidence-based recommendation report.",
+    icon: <ShieldAlert className="w-4 h-4 text-violet-500" />,
+    status: "Completed",
+    tags: ["CVE", "SecurityResearch"],
     colSpan: 2,
-  },
-  {
-    title: "Global Network",
-    meta: "6 regions",
-    description: "Multi-region deployment with edge computing",
-    icon: <Globe className="w-4 h-4 text-sky-500" />,
-    status: "Beta",
-    tags: ["Infrastructure", "Edge"],
   },
 ];
 
@@ -253,7 +247,7 @@ export default function Hero() {
             className="text-5xl sm:text-6xl font-bold tracking-tight text-gray-900 dark:text-gray-50"
           >
             Hello, I&apos;m{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+            <span className="text-blue-600 dark:text-blue-400">
               Aiden Knecht
             </span>
           </motion.h1>
