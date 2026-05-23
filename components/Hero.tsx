@@ -1,16 +1,18 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
   ArrowRight,
+  GraduationCap,
   Mail,
   Search,
   Shield,
   ShieldAlert,
 } from "lucide-react";
+import TranscriptModal from "@/components/TranscriptModal";
 
 // ─── Variants ────────────────────────────────────────────────────────────────
 
@@ -62,50 +64,16 @@ export interface BentoItem {
   cta?: string;
   colSpan?: number;
   hasPersistentHover?: boolean;
+  onClick?: () => void;
 }
 
 interface BentoGridProps {
-  items?: BentoItem[];
+  items: BentoItem[];
 }
-
-// ─── Sample data ─────────────────────────────────────────────────────────────
-
-const itemsSample: BentoItem[] = [
-  {
-    title: "National Cyber League (NCL)",
-    meta: "CTF",
-    description:
-      "Competed in a collegiate-level CTF, solving real-world challenges in OSINT, Log Analysis, and Network Traffic Analysis.",
-    icon: <Shield className="w-4 h-4 text-blue-500" />,
-    status: "Competed",
-    tags: ["CTF", "OSINT", "NetworkAnalysis"],
-    colSpan: 2,
-    hasPersistentHover: true,
-  },
-  {
-    title: "Digital Forensic Investigation",
-    meta: "Academic",
-    description:
-      "Conducted a simulated forensic analysis of a compromised system with proper evidence handling and document control.",
-    icon: <Search className="w-4 h-4 text-emerald-500" />,
-    status: "Completed",
-    tags: ["Forensics", "Cybersecurity"],
-  },
-  {
-    title: "Browser Security Analysis",
-    meta: "Research",
-    description:
-      "Performed a comparative analysis of browser security using CVE data to create an evidence-based recommendation report.",
-    icon: <ShieldAlert className="w-4 h-4 text-violet-500" />,
-    status: "Completed",
-    tags: ["CVE", "SecurityResearch"],
-    colSpan: 2,
-  },
-];
 
 // ─── BentoGrid ───────────────────────────────────────────────────────────────
 
-function BentoGrid({ items = itemsSample }: BentoGridProps) {
+function BentoGrid({ items }: BentoGridProps) {
   return (
     <motion.div
       variants={gridContainerVariants}
@@ -117,17 +85,26 @@ function BentoGrid({ items = itemsSample }: BentoGridProps) {
         <motion.div
           key={index}
           variants={gridItemVariants}
-          // whileHover owns the lift transform so it doesn't conflict with the
-          // entry animation's y values
           whileHover={{ y: -2 }}
           transition={{ duration: 0.2 }}
+          onClick={item.onClick}
+          // Keyboard accessibility for clickable cards
+          role={item.onClick ? "button" : undefined}
+          tabIndex={item.onClick ? 0 : undefined}
+          onKeyDown={
+            item.onClick
+              ? (e) => { if (e.key === "Enter" || e.key === " ") item.onClick?.(); }
+              : undefined
+          }
           className={cn(
             "group relative p-4 rounded-xl overflow-hidden",
             "border border-gray-100/80 dark:border-white/10 bg-white dark:bg-black",
             "hover:shadow-[0_2px_12px_rgba(0,0,0,0.03)] dark:hover:shadow-[0_2px_12px_rgba(255,255,255,0.03)]",
             "will-change-transform",
-            item.colSpan || "col-span-1",
-            item.colSpan === 2 ? "md:col-span-2" : "",
+            // colSpan classes
+            item.colSpan === 2 ? "md:col-span-2" : "col-span-1",
+            // Pointer cursor only on interactive cards
+            item.onClick ? "cursor-pointer" : "",
             {
               "shadow-[0_2px_12px_rgba(0,0,0,0.03)]": item.hasPersistentHover,
               "dark:shadow-[0_2px_12px_rgba(255,255,255,0.03)]":
@@ -207,6 +184,7 @@ function BentoGrid({ items = itemsSample }: BentoGridProps) {
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [transcriptOpen, setTranscriptOpen] = useState(false);
 
   // Track how far the section has scrolled out of view
   const { scrollYProgress } = useScroll({
@@ -216,6 +194,52 @@ export default function Hero() {
 
   // Background grid moves at ~25% of the scroll speed (parallax)
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+
+  // Items defined here so the education card can close over setTranscriptOpen.
+  // Layout: NCL(2) + Forensics(1) on row 1 | BrowserSec(2) + Education(1) on row 2
+  const items: BentoItem[] = [
+    {
+      title: "National Cyber League (NCL)",
+      meta: "CTF",
+      description:
+        "Competed in a collegiate-level CTF, solving real-world challenges in OSINT, Log Analysis, and Network Traffic Analysis.",
+      icon: <Shield className="w-4 h-4 text-blue-500" />,
+      status: "Competed",
+      tags: ["CTF", "OSINT", "NetworkAnalysis"],
+      colSpan: 2,
+      hasPersistentHover: true,
+    },
+    {
+      title: "Digital Forensic Investigation",
+      meta: "Academic",
+      description:
+        "Conducted a simulated forensic analysis of a compromised system with proper evidence handling and document control.",
+      icon: <Search className="w-4 h-4 text-emerald-500" />,
+      status: "Completed",
+      tags: ["Forensics", "Cybersecurity"],
+    },
+    {
+      title: "Browser Security Analysis",
+      meta: "Research",
+      description:
+        "Performed a comparative analysis of browser security using CVE data to create an evidence-based recommendation report.",
+      icon: <ShieldAlert className="w-4 h-4 text-violet-500" />,
+      status: "Completed",
+      tags: ["CVE", "SecurityResearch"],
+      colSpan: 2,
+    },
+    {
+      title: "University of Cincinnati",
+      meta: "4.0 GPA",
+      description:
+        "Pursuing a B.S. in Cybersecurity with a 4.0 GPA and Dean's List recognition. Click to view full transcript.",
+      icon: <GraduationCap className="w-4 h-4 text-amber-500" />,
+      status: "Dean's List",
+      tags: ["Education", "Dean's List", "Cybersecurity"],
+      cta: "View Transcript →",
+      onClick: () => setTranscriptOpen(true),
+    },
+  ];
 
   return (
     <section
@@ -274,9 +298,15 @@ export default function Hero() {
 
         {/* ── BentoGrid showcase — cards stagger in below the header text ── */}
         <div className="mt-16 w-full">
-          <BentoGrid />
+          <BentoGrid items={items} />
         </div>
       </div>
+
+      {/* ── Transcript modal — always mounted, AnimatePresence handles visibility ── */}
+      <TranscriptModal
+        isOpen={transcriptOpen}
+        onClose={() => setTranscriptOpen(false)}
+      />
     </section>
   );
 }
